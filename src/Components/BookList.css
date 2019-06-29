@@ -4,3 +4,8 @@
     flex-direction: column;
     list-style: none;
 }
+
+.book_list > li {
+    width: 100%;
+    max-width: 600px;
+}

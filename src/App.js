@@ -20,12 +20,17 @@ class App extends Component {
   }
 
   componentDidMount() {
+    
+    this.fetchData()
+  }
+
+  fetchData = () => {
     const params = {
       q : this.state.query,
       printType : this.state.printType,
       filter: this.state.filter
     }
-
+  
     function formatQueryParams(params) {
       const queryItems = Object.keys(params)
         .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
@@ -33,12 +38,12 @@ class App extends Component {
     }
     const queryString = formatQueryParams(params)
     const url = this.state.searchURL + '?' + queryString;
-
+  
     const options = {
       headers: new Headers({
         "X-Api-Key": this.state.apiKey})
     };
-
+    
     fetch(url, options)
       .then(res => {
         if(!res.ok) {
@@ -53,7 +58,7 @@ class App extends Component {
             title : book.volumeInfo.title,
             authors: book.volumeInfo.authors,
             thumbnail : book.volumeInfo.imageLinks.smallThumbnail,
-            snippet : book.hasOwnProperty('searchInfo') ? book.searchInfo.textSnippet : '',
+            snippet : book.hasOwnProperty('volumeInfo') ? book.volumeInfo.description : '',
             price : book.saleInfo.saleability === 'FOR_SALE' ? '$' + book.saleInfo.listPrice.amount : 'Not for Sale',
           }
         })
@@ -69,14 +74,37 @@ class App extends Component {
       });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.fetchData()
+  }
+
+  handlePrintTypeChange = (event) => {
+    this.setState(
+      {printType: event.target.value}
+    )
+  }
+
+  handleFilterChange = (event) => {
+    this.setState(
+      {filter: event.target.value}
+    )
+  }
+
+  handleSearchChange = (event) => {
+    this.setState(
+      {query: event.target.value}
+    )
+  }
+
   render() {
     return (
       <div className="App">
         <Header title="Google Book Search" />
         <main>
         <section>
-          <SearchForm />
-          <FormFilters />
+          <SearchForm searchQuery={this.state.query} handleSearchChange={this.handleSearchChange} handleSubmit={this.handleSubmit} />
+          <FormFilters handlePrintTypeChange={this.handlePrintTypeChange} handleFilterChange={this.handleFilterChange}  />
         </section>
         <section>
           <BookList books={this.state.books} />

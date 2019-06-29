@@ -10,11 +10,21 @@ const BookItem = (props) => {
                 <div className="book_info">
                     <p>Author: {props.bookInfo.authors}</p>
                     <p>Price: {props.bookInfo.price}</p>
-                    <pre>{props.bookInfo.snippet.replace(/(<([^>]+)>)/ig,"")}</pre>
+                    <p>{props.bookInfo.snippet}</p>
                 </div>
             </div>
         </li>
      );
+}
+
+BookItem.defaultProps = {
+    bookInfo : {
+        title: '',
+        thumbnail: '',
+        authors: '',
+        price: '',
+        snippet: ''
+    }
 }
  
 export default BookItem;

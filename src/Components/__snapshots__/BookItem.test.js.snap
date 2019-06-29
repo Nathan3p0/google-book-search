@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Book Item Component renders empty given no book detail 1`] = `
+<li
+  className="book_item"
+>
+  <h2 />
+  <div
+    className="book_details"
+  >
+    <img
+      alt="Book cover"
+      src=""
+    />
+    <div
+      className="book_info"
+    >
+      <p>
+        Author: 
+      </p>
+      <p>
+        Price: 
+      </p>
+      <pre />
+    </div>
+  </div>
+</li>
+`;
+
+exports[`Book Item Component renders with book info properly 1`] = `
+<li
+  className="book_item"
+>
+  <h2>
+    Llamas
+  </h2>
+  <div
+    className="book_details"
+  >
+    <img
+      alt="Book cover"
+      src="http://books.google.com/books/content?id=3pJ-YdPLI2UC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    />
+    <div
+      className="book_info"
+    >
+      <p>
+        Author: 
+        Peru
+      </p>
+      <p>
+        Price: 
+        $15,000
+      </p>
+      <pre>
+        Llamas can wear pajamas
+      </pre>
+    </div>
+  </div>
+</li>
+`;

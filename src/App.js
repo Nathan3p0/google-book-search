@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
     this.state = {
       books : [],
-      query : '',
+      query : 'llamas',
       printType: 'all',
       filter: 'partial',
       apiKey : 'AIzaSyDGeGG17Dg3IbVNBSBebNHy8HZGt2vWsu0',
@@ -54,7 +54,7 @@ class App extends Component {
             authors: book.volumeInfo.authors,
             thumbnail : book.volumeInfo.imageLinks.smallThumbnail,
             snippet : book.hasOwnProperty('searchInfo') ? book.searchInfo.textSnippet : '',
-            price : book.saleInfo.saleability === 'FOR_SALE' ? book.saleInfo.listPrice.amount : false,
+            price : book.saleInfo.saleability === 'FOR_SALE' ? '$' + book.saleInfo.listPrice.amount : 'Not for Sale',
           }
         })
 
@@ -79,7 +79,7 @@ class App extends Component {
           <FormFilters />
         </section>
         <section>
-          <BookList />
+          <BookList books={this.state.books} />
         </section>
         </main>
       </div>

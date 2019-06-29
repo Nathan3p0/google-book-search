@@ -1,0 +1,8 @@
+.form_filters {
+    background-color: #dedede;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #b2b2b2;
+}

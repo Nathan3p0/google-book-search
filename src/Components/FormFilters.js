@@ -1,4 +1,5 @@
 import React from 'react';
+import './FormFilter.css'
 
 const FormFilters = (props) => {
     return ( 
